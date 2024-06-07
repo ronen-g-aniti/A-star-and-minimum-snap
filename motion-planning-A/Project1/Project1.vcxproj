@@ -107,11 +107,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ronen\Desktop\eigen-3.4.0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>y</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,6 +140,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="obstacles.csv" />
+    <None Include="show_lattice.py.py" />
+    <None Include="show_path.py" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnvData.h" />

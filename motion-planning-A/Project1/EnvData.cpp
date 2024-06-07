@@ -34,8 +34,6 @@ void ObstacleParser::parseCSV(const std::string& filename) {
     }
 
     std::string line;
-    std::getline(file, line); // Skip the first line
-    std::getline(file, line); // Skip the second line
 
     while (std::getline(file, line)) {
         std::istringstream ss(line);
@@ -45,13 +43,8 @@ void ObstacleParser::parseCSV(const std::string& filename) {
         while (std::getline(ss, token, ',')) {
             values.push_back(std::stof(token));
         }
-
-        if (values.size() == 6) {
-            obstacles.emplace_back(values[0], values[1], values[2], values[3], values[4], values[5]);
-        }
-        else {
-            std::cerr << "Error: Line has insufficient data: " << line << std::endl;
-        }
+        obstacles.emplace_back(values[0], values[1], values[2], values[3], values[4], values[5]);
+        
     }
 }
 
