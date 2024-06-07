@@ -29,6 +29,8 @@
     <None Include="obstacles.csv">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="show_lattice.py.py" />
+    <None Include="show_path.py" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnvData.h">
