@@ -9,6 +9,35 @@ The following images typify the results of the project:
 
 ![Results2](motion-planning-A/Project1/trajectory.png)
 
+### Theory
+
+#### A* Pathfinding
+
+A* (A-star) is a pathfinding and graph traversal algorithm that efficiently finds the shortest path between two nodes. It combines the benefits of Dijkstra's algorithm and a greedy best-first search by using a cost function:
+
+$$
+f(n) = g(n) + h(n)
+$$
+
+where:
+- \( g(n) \) is the cost from the start node to node \( n \).
+- \( h(n) \) is the heuristic estimate of the cost from node \( n \) to the goal.
+
+#### Seventh-Order Polynomials for Trajectory Generation
+
+Seventh-order polynomials are used to approximate minimum snap trajectories. The polynomial representation of the trajectory is given by:
+
+$$
+\mathbf{p}(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3 + a_4 t^4 + a_5 t^5 + a_6 t^6 + a_7 t^7
+$$
+
+The goal is to minimize the snap, which is the fourth derivative of position. The objective function for snap minimization is:
+
+$$
+J = \int_{0}^{T} \left( \frac{d^4 \mathbf{p}(t)}{dt^4} \right)^2 dt
+$$
+
+For more details, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository. 
 
 ## Description
 
@@ -19,7 +48,26 @@ The following images typify the results of the project:
 - **show_lattice.py**: Visualizes the lattice and obstacles.
 - **show_path.py**: Visualizes the path found by the A* algorithm.
 - **show_trajectory.py**: Visualizes the trajectory generated for the path.
-- **telemetry_data_processor.py**: Processes telemetry data (additional functionality).
+
+### Dependencies
+
+The project relies on several dependencies for both the C++ and Python components. Below is a list of the required libraries and their purposes.
+
+#### C++ Dependencies
+
+- **Eigen**: A C++ template library for linear algebra. It is used for matrix and vector operations, particularly in solving the polynomial coefficients.
+
+To install Eigen, download it from the [official Eigen website](http://eigen.tuxfamily.org/).
+
+#### Python Dependencies
+
+- **Matplotlib**: A plotting library for creating static, animated, and interactive visualizations in Python.
+- **Pandas**: A data manipulation and analysis library for Python. It provides data structures and functions needed to work with structured data seamlessly.
+
+To install these Python libraries, you can use pip:
+```bash
+pip install matplotlib pandas
+```
 
 ## Usage
 
@@ -41,3 +89,4 @@ Each run of the main program will generate CSV files that are used by the visual
 
 - The file `motion-planning-controls.sln` is used to manage the project solution in Visual Studio.
 - The name "controls" in the solution file is a misnomer; the project focuses on motion planning and trajectory generation, not control.
+
