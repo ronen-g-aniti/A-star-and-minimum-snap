@@ -5,14 +5,17 @@ In this project, I implemented trajectory generation for path planning using a s
 ### Polynomial Representation
 
 I modeled the trajectory as a seventh-order polynomial function of time:
+
 $$
 \mathbf{p}(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3 + a_4 t^4 + a_5 t^5 + a_6 t^6 + a_7 t^7
 $$
+
 where $\mathbf{p}(t)$ is the position vector.
 
 ### Snap Minimization Approximation
 
 Although seventh-order polynomials are not the exact solution to the minimum snap problem, they provide a good approximation by minimizing the integral of the snap squared:
+
 $$
 J = \int_{0}^{T} \left( \frac{d^4 \mathbf{p}(t)}{dt^4} \right)^2 dt
 $$
@@ -45,6 +48,7 @@ I denoted the normalized start times as $t_i$ for $i = 0, 1, \ldots, N-1$. I con
 1. **Initial Constraints**:
 
    - Velocity at $t_0$:
+ 
      $$
      7 t_0^6 a_7 + 6 t_0^5 a_6 + 5 t_0^4 a_5 + 4 t_0^3 a_4 + 3 t_0^2 a_3 + 2 t_0 a_2 + a_1 = 0
      $$
