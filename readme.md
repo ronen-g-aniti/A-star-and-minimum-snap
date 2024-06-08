@@ -1,7 +1,6 @@
-# Motion Planning in 3D
+# Advanced 3D Motion Planning and Trajectory Generation for Autonomous Quadcopters
 
-This project demonstrates a 3D motion planning algorithm with trajectory generation for a quadcopter navigating through obstacles. The implementation includes obstacle parsing, lattice construction, pathfinding using A* search, and polynomial trajectory generation. The results are visualized in 3D.
-
+I developed a 3D motion planning system for a quadcopter using a comprehensive engineering design process. This involved coding components for obstacle parsing, lattice construction, A* pathfinding, and polynomial trajectory generation, integrated and tested rigorously through EnvData.cpp, Lattice.cpp, trajectory.cpp, and main.cpp. The project successfully generated and visualized efficient flight paths in a 3D environment, showcasing my ability to execute detailed design and implementation steps.
 
 The following images typify the results of the project:
 
@@ -13,7 +12,7 @@ The following images typify the results of the project:
 
 ### A* Pathfinding
 
-A* (A-star) is a pathfinding and graph traversal algorithm that efficiently finds the shortest path between two nodes. It combines the benefits of Dijkstra's algorithm and a greedy best-first search by using a cost function:
+I implemented the A* pathfinding algorithm, renowned for its efficiency in finding the shortest path between two nodes by combining Dijkstra's algorithm and a greedy best-first search. My implementation leverages the cost function:
 
 $$
 f(n) = g(n) + h(n)
@@ -23,21 +22,23 @@ where:
 - \( g(n) \) is the cost from the start node to node \( n \).
 - \( h(n) \) is the heuristic estimate of the cost from node \( n \) to the goal.
 
+By carefully tuning the heuristic, I ensured optimal performance and accuracy in navigating complex 3D environments, demonstrating my ability to apply advanced algorithmic concepts to practical problems.
+
 ### Seventh-Order Polynomials for Trajectory Generation
 
-Seventh-order polynomials are used to approximate minimum snap trajectories. The polynomial representation of the trajectory is given by:
+I utilized seventh-order polynomials to generate smooth, minimum snap trajectories for the quadcopter. The polynomial trajectory is represented as:
 
 $$
 \mathbf{p}(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3 + a_4 t^4 + a_5 t^5 + a_6 t^6 + a_7 t^7
 $$
 
-The goal is to minimize the snap, which is the fourth derivative of position. The objective function for snap minimization is:
+The goal was to minimize the snap, defined as the fourth derivative of position. I achieved this by optimizing the objective function:
 
 $$
 J = \int_{0}^{T} \left( \frac{d^4 \mathbf{p}(t)}{dt^4} \right)^2 dt
 $$
 
-For more details, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository. 
+This approach ensured the quadcopter's smooth and efficient movement through the environment, reflecting my proficiency in applying complex mathematical models to real-world engineering challenges. For an in-depth understanding, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository. 
 
 ## Description
 
