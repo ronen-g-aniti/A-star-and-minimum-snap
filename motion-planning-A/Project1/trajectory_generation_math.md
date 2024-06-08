@@ -8,7 +8,7 @@ I modeled the trajectory as a seventh-order polynomial function of time:
 $$
 \mathbf{p}(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3 + a_4 t^4 + a_5 t^5 + a_6 t^6 + a_7 t^7
 $$
-where \( \mathbf{p}(t) \) is the position vector.
+where $\mathbf{p}(t)$ is the position vector.
 
 ### Snap Minimization Approximation
 
@@ -23,7 +23,7 @@ To solve for the polynomial coefficients, I constructed a matrix system based on
 
 #### 1. Waypoints and Segments
 
-Given \( N \) waypoints, I had \( N-1 \) segments. Each segment is represented by a seventh-order polynomial, which has 8 coefficients. Therefore, I had a total of \( 8(N-1) \) unknown coefficients to solve for.
+Given $N$ waypoints, I had $N-1$ segments. Each segment is represented by a seventh-order polynomial, which has 8 coefficients. Therefore, I had a total of $8(N-1)$ unknown coefficients to solve for.
 
 #### 2. Constraints
 
@@ -40,35 +40,35 @@ To determine these coefficients, I set up a system of linear equations based on 
 
 #### 3. Formulating the Matrix System
 
-I denoted the normalized start times as \( t_i \) for \( i = 0, 1, \ldots, N-1 \). I constructed the matrix \( \mathbf{A} \) and vector \( \mathbf{b} \) to encode these constraints:
+I denoted the normalized start times as $t_i$ for $i = 0, 1, \ldots, N-1$. I constructed the matrix $\mathbf{A}$ and vector $\mathbf{b}$ to encode these constraints:
 
 1. **Initial Constraints**:
 
-   - Velocity at \( t_0 \):
+   - Velocity at $t_0$:
      $$
      7 t_0^6 a_7 + 6 t_0^5 a_6 + 5 t_0^4 a_5 + 4 t_0^3 a_4 + 3 t_0^2 a_3 + 2 t_0 a_2 + a_1 = 0
      $$
 
-   - Acceleration at \( t_0 \):
+   - Acceleration at $t_0$:
      $$
      42 t_0^5 a_7 + 30 t_0^4 a_6 + 20 t_0^3 a_5 + 12 t_0^2 a_4 + 6 t_0 a_3 + 2 a_2 = 0
      $$
 
-   - Jerk at \( t_0 \):
+   - Jerk at $t_0$:
      $$
      210 t_0^4 a_7 + 120 t_0^3 a_6 + 60 t_0^2 a_5 + 24 t_0 a_4 + 6 a_3 = 0
      $$
 
 2. **Waypoint Constraints**:
 
-   For each waypoint \( \mathbf{p}_i \) at \( t_i \):
+   For each waypoint $\mathbf{p}_i$ at $t_i$:
    $$
    \mathbf{p}_i = a_0 + a_1 t_i + a_2 t_i^2 + a_3 t_i^3 + a_4 t_i^4 + a_5 t_i^5 + a_6 t_i^6 + a_7 t_i^7
    $$
 
 3. **Continuity Constraints**:
 
-   For continuity at each interior waypoint \( t_i \) (for \( i = 1, 2, \ldots, N-2 \)):
+   For continuity at each interior waypoint $t_i$ (for $i = 1, 2, \ldots, N-2$):
 
    - Position:
      $$
@@ -105,11 +105,11 @@ I denoted the normalized start times as \( t_i \) for \( i = 0, 1, \ldots, N-1 \
      \frac{d^6\mathbf{p}}{dt^6}(t_i^-) = \frac{d^6\mathbf{p}}{dt^6}(t_i^+)
      $$
 
-These constraints led to a system of \( 8(N-1) \) linear equations. I constructed the matrix \( \mathbf{A} \) by placing the coefficients of the polynomials in each row corresponding to the constraints, and \( \mathbf{b} \) as the vector of known values (positions of waypoints, zeros for continuity constraints).
+These constraints led to a system of $8(N-1)$ linear equations. I constructed the matrix $\mathbf{A}$ by placing the coefficients of the polynomials in each row corresponding to the constraints, and $\mathbf{b}$ as the vector of known values (positions of waypoints, zeros for continuity constraints).
 
 #### Solving the System
 
-I solved the system of equations \( \mathbf{A} \mathbf{a} = \mathbf{b} \) using Eigen's `colPivHouseholderQr` solver, which provided the polynomial coefficients \( \mathbf{a} \).
+I solved the system of equations $\mathbf{A} \mathbf{a} = \mathbf{b}$ using Eigen's `colPivHouseholderQr` solver, which provided the polynomial coefficients $\mathbf{a}$.
 
 ```cpp
 Eigen::VectorXd solveCoefficients(const std::vector<Eigen::Vector3f>& waypoints, const std::vector<double>& startTimes, char component) {
@@ -118,8 +118,8 @@ Eigen::VectorXd solveCoefficients(const std::vector<Eigen::Vector3f>& waypoints,
 }
 ```
 
-### Evaluating the Trajectory
-Once I determined the coefficients, I used the evaluateTrajectory function to evaluate the polynomial at any given time to obtain the position of the trajectory.
+#### Evaluating the Trajectory
+Once I determined the coefficients, I used the evaluateTrajectory function to evaluate the polynomial at any given time $t$ to obtain the position of the trajectory.
 
 ```cpp
 Eigen::Vector3f evaluateTrajectory(const Eigen::VectorXd& coeffsX, const Eigen::VectorXd& coeffsY, const Eigen::VectorXd& coeffsZ, const std::vector<double>& startTimes, double t) {
