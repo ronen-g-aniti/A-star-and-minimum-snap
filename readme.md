@@ -9,9 +9,9 @@ The following images typify the results of the project:
 
 ![Results2](motion-planning-A/Project1/trajectory.png)
 
-### Theory
+## Theory
 
-#### A* Pathfinding
+### A* Pathfinding
 
 A* (A-star) is a pathfinding and graph traversal algorithm that efficiently finds the shortest path between two nodes. It combines the benefits of Dijkstra's algorithm and a greedy best-first search by using a cost function:
 
@@ -23,7 +23,7 @@ where:
 - \( g(n) \) is the cost from the start node to node \( n \).
 - \( h(n) \) is the heuristic estimate of the cost from node \( n \) to the goal.
 
-#### Seventh-Order Polynomials for Trajectory Generation
+### Seventh-Order Polynomials for Trajectory Generation
 
 Seventh-order polynomials are used to approximate minimum snap trajectories. The polynomial representation of the trajectory is given by:
 
