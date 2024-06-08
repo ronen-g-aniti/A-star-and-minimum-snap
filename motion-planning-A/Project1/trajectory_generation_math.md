@@ -54,60 +54,70 @@ $$
 $$
 
    - Acceleration at $t_0$:
-     $$
-     42 t_0^5 a_7 + 30 t_0^4 a_6 + 20 t_0^3 a_5 + 12 t_0^2 a_4 + 6 t_0 a_3 + 2 a_2 = 0
-     $$
+
+$$
+42 t_0^5 a_7 + 30 t_0^4 a_6 + 20 t_0^3 a_5 + 12 t_0^2 a_4 + 6 t_0 a_3 + 2 a_2 = 0
+$$
 
    - Jerk at $t_0$:
-     $$
-     210 t_0^4 a_7 + 120 t_0^3 a_6 + 60 t_0^2 a_5 + 24 t_0 a_4 + 6 a_3 = 0
-     $$
+
+$$
+210 t_0^4 a_7 + 120 t_0^3 a_6 + 60 t_0^2 a_5 + 24 t_0 a_4 + 6 a_3 = 0
+$$
 
 2. **Waypoint Constraints**:
 
    For each waypoint $\mathbf{p}_i$ at $t_i$:
-   $$
-   \mathbf{p}_i = a_0 + a_1 t_i + a_2 t_i^2 + a_3 t_i^3 + a_4 t_i^4 + a_5 t_i^5 + a_6 t_i^6 + a_7 t_i^7
-   $$
+
+$$
+\mathbf{p}_i = a_0 + a_1 t_i + a_2 t_i^2 + a_3 t_i^3 + a_4 t_i^4 + a_5 t_i^5 + a_6 t_i^6 + a_7 t_i^7
+$$
 
 3. **Continuity Constraints**:
 
    For continuity at each interior waypoint $t_i$ (for $i = 1, 2, \ldots, N-2$):
 
    - Position:
-     $$
-     \mathbf{p}(t_i^-) = \mathbf{p}(t_i^+)
-     $$
+
+$$
+\mathbf{p}(t_i^-) = \mathbf{p}(t_i^+)
+$$
 
    - Velocity:
-     $$
-     \frac{d\mathbf{p}}{dt}(t_i^-) = \frac{d\mathbf{p}}{dt}(t_i^+)
-     $$
+
+$$
+\frac{d\mathbf{p}}{dt}(t_i^-) = \frac{d\mathbf{p}}{dt}(t_i^+)
+$$
 
    - Acceleration:
-     $$
-     \frac{d^2\mathbf{p}}{dt^2}(t_i^-) = \frac{d^2\mathbf{p}}{dt^2}(t_i^+)
-     $$
+
+$$
+\frac{d^2\mathbf{p}}{dt^2}(t_i^-) = \frac{d^2\mathbf{p}}{dt^2}(t_i^+)
+$$
 
    - Jerk:
-     $$
-     \frac{d^3\mathbf{p}}{dt^3}(t_i^-) = \frac{d^3\mathbf{p}}{dt^3}(t_i^+)
-     $$
+
+$$
+\frac{d^3\mathbf{p}}{dt^3}(t_i^-) = \frac{d^3\mathbf{p}}{dt^3}(t_i^+)
+$$
 
    - Snap:
-     $$
-     \frac{d^4\mathbf{p}}{dt^4}(t_i^-) = \frac{d^4\mathbf{p}}{dt^4}(t_i^+)
-     $$
+
+$$
+\frac{d^4\mathbf{p}}{dt^4}(t_i^-) = \frac{d^4\mathbf{p}}{dt^4}(t_i^+)
+$$
 
    - Crackle:
-     $$
-     \frac{d^5\mathbf{p}}{dt^5}(t_i^-) = \frac{d^5\mathbf{p}}{dt^5}(t_i^+)
-     $$
+
+$$
+\frac{d^5\mathbf{p}}{dt^5}(t_i^-) = \frac{d^5\mathbf{p}}{dt^5}(t_i^+)
+$$
 
    - Pop:
-     $$
-     \frac{d^6\mathbf{p}}{dt^6}(t_i^-) = \frac{d^6\mathbf{p}}{dt^6}(t_i^+)
-     $$
+
+$$
+\frac{d^6\mathbf{p}}{dt^6}(t_i^-) = \frac{d^6\mathbf{p}}{dt^6}(t_i^+)
+$$
 
 These constraints led to a system of $8(N-1)$ linear equations. I constructed the matrix $\mathbf{A}$ by placing the coefficients of the polynomials in each row corresponding to the constraints, and $\mathbf{b}$ as the vector of known values (positions of waypoints, zeros for continuity constraints).
 
