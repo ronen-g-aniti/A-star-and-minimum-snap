@@ -48,10 +48,10 @@ void Lattice::buildGraph() {
 			if (distance <= radius) {
 				edges[i][j] = distance;
 				edges[j][i] = distance;
-				std::cout << "Edge between " << i << " and " << j << " with distance " << distance << std::endl;
 			}
 			
 		}
+    std::cout << "Number of edges: " << edges.size() << std::endl;
 	}
 }
 

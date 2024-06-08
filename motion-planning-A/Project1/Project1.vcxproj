@@ -137,15 +137,16 @@
     <ClCompile Include="EnvData.cpp" />
     <ClCompile Include="Lattice.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="trajectory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="obstacles.csv" />
-    <None Include="show_lattice.py.py" />
     <None Include="show_path.py" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnvData.h" />
     <ClInclude Include="Lattice.h" />
+    <ClInclude Include="trajectory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
