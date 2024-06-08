@@ -5,9 +5,9 @@ This project demonstrates a 3D motion planning algorithm with trajectory generat
 
 The following images typify the results of the project:
 
-![Results1](Project1/path.png)
+![Results1](motion-planning-A/Project1/path.png)
 
-![Results2](Project1/trajectory.png)
+![Results2](motion-planning-A/Project1/trajectory.png)
 
 
 ## Description
