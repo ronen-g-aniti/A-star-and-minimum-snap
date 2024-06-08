@@ -24,12 +24,14 @@
     <ClCompile Include="Lattice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="trajectory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="obstacles.csv">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="show_lattice.py.py" />
     <None Include="show_path.py" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lattice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trajectory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
