@@ -77,7 +77,7 @@ $$
 
    For continuity at each interior waypoint $t_i$ (for $i = 1, 2, \ldots, N-2$):
 
-   - Position:
+ - Position:
 
 $$
 \mathbf{p}(t_i^-) = \mathbf{p}(t_i^+)
