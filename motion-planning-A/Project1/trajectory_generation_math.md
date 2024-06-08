@@ -49,9 +49,9 @@ I denoted the normalized start times as $t_i$ for $i = 0, 1, \ldots, N-1$. I con
 
    - Velocity at $t_0$:
  
-     $$
-     7 t_0^6 a_7 + 6 t_0^5 a_6 + 5 t_0^4 a_5 + 4 t_0^3 a_4 + 3 t_0^2 a_3 + 2 t_0 a_2 + a_1 = 0
-     $$
+$$
+7 t_0^6 a_7 + 6 t_0^5 a_6 + 5 t_0^4 a_5 + 4 t_0^3 a_4 + 3 t_0^2 a_3 + 2 t_0 a_2 + a_1 = 0
+$$
 
    - Acceleration at $t_0$:
      $$
