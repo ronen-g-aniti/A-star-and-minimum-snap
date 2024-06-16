@@ -8,37 +8,53 @@ The following images typify the results of the project:
 
 ![Results2](motion-planning-A/Project1/trajectory.png)
 
-## Theory
+### Theory
 
-### A* Pathfinding
+#### Cubic Lattice Graph Structure and A* Pathfinding
 
-I implemented the A* pathfinding algorithm, renowned for its efficiency in finding the shortest path between two nodes by combining Dijkstra's algorithm and a greedy best-first search. My implementation leverages the cost function:
+I have implemented a cubic lattice graph structure to represent the 3D environment through which the quadcopter navigates. This structure provides a clear framework for the pathfinding algorithm to operate.
+
+To find the shortest path from the current position to the target position, I employed the A* pathfinding algorithm. This algorithm is known for its efficiency, combining the strengths of Dijkstra's algorithm and a greedy best-first search. My implementation leverages the following cost function:
+
+$$ f(n) = g(n) + h(n) $$
+
+where:
+- $$ g(n) $$ is the cost from the start node to node $$ n $$.
+- $$ h(n) $$ is the heuristic estimate of the cost from node $$ n $$ to the goal, using the Euclidean distance.
+
+By using the Euclidean distance as the heuristic, I ensured accurate and efficient navigation through the 3D cubic lattice, demonstrating my ability to apply advanced algorithmic concepts to practical problems.
+
+#### Seventh-Order Polynomial Trajectory Planning
+
+Once the pathfinding algorithm determines the waypoints, my custom trajectory planner code interpolates a piecewise continuous seventh-order polynomial trajectory through these waypoints. This approach ensures smooth transitions and minimizes the snap (the fourth derivative of position) for the quadcopter.
+
+The core function of the trajectory planner is to transform any sequence of $$ N $$ waypoints into a series of $$ N-1 $$ smooth trajectory segments. Each segment of the trajectory between waypoints is modeled as a seventh-order polynomial:
 
 $$
-f(n) = g(n) + h(n)
+p(t) = a_7 t^7 + a_6 t^6 + a_5 t^5 + a_4 t^4 + a_3 t^3 + a_2 t^2 + a_1 t + a_0
 $$
 
 where:
-- \( g(n) \) is the cost from the start node to node \( n \).
-- \( h(n) \) is the heuristic estimate of the cost from node \( n \) to the goal.
+- $$ t $$ is the time parameter.
+- $$ a_0, a_1, \ldots, a_7 $$ are the polynomial coefficients determined for each segment.
 
-By carefully tuning the heuristic, I ensured optimal performance and accuracy in navigating complex 3D environments, demonstrating my ability to apply advanced algorithmic concepts to practical problems.
+The boundary conditions applied are:
+- Complete rest (zero velocity, acceleration, jerk, and snap) at the initial waypoint, which translates to:
+  $$
+  p(0) = p_0, \quad \dot{p}(0) = 0, \quad \ddot{p}(0) = 0, \quad \dddot{p}(0) = 0, \quad \ddddot{p}(0) = 0
+  $$
+- Complete rest (zero velocity, acceleration, jerk, and snap) at the final waypoint, which translates to:
+  $$
+  p(T) = p_T, \quad \dot{p}(T) = 0, \quad \ddot{p}(T) = 0, \quad \dddot{p}(T) = 0, \quad \ddddot{p}(T) = 0
+  $$
 
-### Seventh-Order Polynomials for Trajectory Generation
+Here, $$ p_0 $$ and $$ p_T $$ are the positions at the initial and final waypoints, respectively, and $$ T $$ is the time taken to travel between these waypoints.
 
-I utilized seventh-order polynomials to generate smooth, minimum snap trajectories for the quadcopter. The polynomial trajectory is represented as:
+One challenge I faced in creating the trajectory planning code was constructing the matrix system of equations. This required some creativity in determining which equations to use as constraints and how to know when to stop. For each segment of the trajectory, there are 8 unknown coefficients, necessitating 8 equations to solve for them. This process involved setting up continuity conditions for position, velocity, acceleration, jerk, and snap at each waypoint.
 
-$$
-\mathbf{p}(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3 + a_4 t^4 + a_5 t^5 + a_6 t^6 + a_7 t^7
-$$
+This method generates smooth, minimum snap trajectories, optimizing the quadcopter's movement through the environment. This reflects my proficiency in applying complex mathematical models to real-world engineering challenges.
 
-The goal was to minimize the snap, defined as the fourth derivative of position. I achieved this by optimizing the objective function:
-
-$$
-J = \int_{0}^{T} \left( \frac{d^4 \mathbf{p}(t)}{dt^4} \right)^2 dt
-$$
-
-This approach ensured the quadcopter's smooth and efficient movement through the environment, reflecting my proficiency in applying complex mathematical models to real-world engineering challenges. For an in-depth understanding, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository. 
+For an in-depth understanding, refer to the Trajectory Planning Math file in this repository.
 
 ## Description
 
