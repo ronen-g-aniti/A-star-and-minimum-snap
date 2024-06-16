@@ -53,7 +53,7 @@ $$
 
 Here, $p_0$ and $p_T$ are the positions at the initial and final waypoints, respectively, and $T$ is the time taken to travel between these waypoints.
 
-One challenge I faced in creating the trajectory planning code was constructing the matrix system of equations. This required some creativity in determining which equations to use as constraints and how to know when to stop. For each segment of the trajectory, there are 8 unknown coefficients, necessitating 8 equations to solve for them. This process involved setting up continuity conditions for position, velocity, acceleration, jerk, and snap at each waypoint.
+A significant challenge in creating the trajectory planning code was constructing the matrix system of equations needed to solve for the polynomial coefficients. This required determining the appropriate constraints and ensuring there were enough equations to match the number of unknown coefficients. For each trajectory segment, there are 8 unknown coefficients, necessitating 8 constraints per segment. This involved setting up continuity conditions for position, velocity, acceleration, jerk, and snap at each waypoint.
 
 This method generates smooth, minimum snap trajectories, optimizing the quadcopter's movement through the environment. This reflects my proficiency in applying complex mathematical models to real-world engineering challenges.
 
