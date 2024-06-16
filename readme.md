@@ -57,7 +57,7 @@ A significant challenge in creating the trajectory planning code was constructin
 
 At each of the intermediate waypoints of the path, I enforced the following constraints in order to build my matrix system: 
 
-- Continuity of position ($ \mathbf{p}(t) $)
+- Continuity of position ($\mathbf{p}(t)$)
 - Continuity of velocity ($\frac{d\mathbf{p}(t)}{dt}$)
 - Continuity of acceleration ($\frac{d^2\mathbf{p}(t)}{dt^2}$)
 - Continuity of jerk ($\frac{d^3\mathbf{p}(t)}{dt^3}$)
