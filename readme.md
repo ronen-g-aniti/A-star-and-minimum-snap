@@ -40,16 +40,14 @@ where:
 
 The boundary conditions applied are:
 - Complete rest (zero velocity, acceleration, jerk, and snap) at the initial waypoint, which translates to:
-
-  $$
-  p(0) = p_0, \quad \dot{p}(0) = 0, \quad \ddot{p}(0) = 0, \quad \dddot{p}(0) = 0, \quad \ddddot{p}(0) = 0
-  $$
+$$
+p(0) = p_0, \quad \dot{p}(0) = 0, \quad \ddot{p}(0) = 0, \quad \dddot{p}(0) = 0, \quad \ddddot{p}(0) = 0
+$$
 
 - Complete rest (zero velocity, acceleration, jerk, and snap) at the final waypoint, which translates to:
-
-  $$
-  p(T) = p_T, \quad \dot{p}(T) = 0, \quad \ddot{p}(T) = 0, \quad \dddot{p}(T) = 0, \quad \ddddot{p}(T) = 0
-  $$
+$$
+p(T) = p_T, \quad \dot{p}(T) = 0, \quad \ddot{p}(T) = 0, \quad \dddot{p}(T) = 0, \quad \ddddot{p}(T) = 0
+$$
 
 Here, $p_0$ and $p_T$ are the positions at the initial and final waypoints, respectively, and $T$ is the time taken to travel between these waypoints.
 
