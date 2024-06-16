@@ -33,7 +33,7 @@ Given $N$ waypoints, I had $N-1$ segments. Each segment is represented by a seve
 To determine these coefficients, I set up a system of linear equations based on the following constraints:
 
 - **Initial and Final Constraints**:
-  - Velocity, acceleration, and jerk are zero at the start and end positions.
+  - Velocity, acceleration, jerk, snap, crackle, and pop are zero at the start and end positions.
 
 - **Waypoint Constraints**:
   - The polynomial passes through each waypoint.
