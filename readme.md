@@ -55,7 +55,7 @@ Here, $p_0$ and $p_T$ are the positions at the initial and final waypoints, resp
 
 A significant challenge in creating the trajectory planning code was constructing the matrix system of equations needed to solve for the polynomial coefficients. This required determining the appropriate constraints and ensuring there were enough equations to match the number of unknown coefficients. For each trajectory segment, there are 8 unknown coefficients, necessitating 8 constraints per segment. This involved setting up continuity conditions for position, velocity, acceleration, jerk, and snap at each waypoint.
 
-At each of the intermediate waypoints of the path, I enforced the following constraints in order to build my matrix system: 
+At each of the intermediate waypoints of the path, I enforced the continuity for the 0th to the 6th derivative.
 
 - Continuity of position ($\mathbf{p}{(t)}$)
 - Continuity of velocity ($\frac{d\mathbf{p}(t)}{dt}$)
@@ -65,9 +65,7 @@ At each of the intermediate waypoints of the path, I enforced the following cons
 - Continuity of crackle ($\frac{d^5\mathbf{p}(t)}{dt^5}$)
 - Continuity of pop ($\frac{d^6\mathbf{p}(t)}{dt^6}$)
 
-These continuity conditions ensure that the trajectory is smooth and free from abrupt changes, which is crucial for the stable and efficient operation of the quadcopter.
-
-This method generates smooth, minimum snap trajectories, optimizing the quadcopter's movement through the environment. This reflects my proficiency in applying complex mathematical models to real-world engineering challenges.
+When applied to a sequence of $N$ waypoints, these boundary and intermediate waypoint constraints lead to a matrix-system that is full-rank, which is why this trajectory planning module will reliably generate a series of $N-1$ trajectory segments that approximate a minimum snap trajectory given any sequence of $N$ waypoints. There may be exceptions which I've yet to discover, but so far, I've validated the robustness of the codes through repeated testing of randomly generated paths through the drone's environment.
 
 For an in-depth understanding, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository.
 
