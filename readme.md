@@ -19,8 +19,8 @@ To find the shortest path from the current position to the target position, I em
 $$ f(n) = g(n) + h(n) $$
 
 where:
-- $$ g(n) $$ is the cost from the start node to node $$ n $$.
-- $$ h(n) $$ is the heuristic estimate of the cost from node $$ n $$ to the goal, using the Euclidean distance.
+- $g(n)$ is the cost from the start node to node $$ n $$.
+- $h(n)$ is the heuristic estimate of the cost from node $$ n $$ to the goal, using the Euclidean distance.
 
 By using the Euclidean distance as the heuristic, I ensured accurate and efficient navigation through the 3D cubic lattice, demonstrating my ability to apply advanced algorithmic concepts to practical problems.
 
@@ -28,27 +28,30 @@ By using the Euclidean distance as the heuristic, I ensured accurate and efficie
 
 Once the pathfinding algorithm determines the waypoints, my custom trajectory planner code interpolates a piecewise continuous seventh-order polynomial trajectory through these waypoints. This approach ensures smooth transitions and minimizes the snap (the fourth derivative of position) for the quadcopter.
 
-The core function of the trajectory planner is to transform any sequence of $$ N $$ waypoints into a series of $$ N-1 $$ smooth trajectory segments. Each segment of the trajectory between waypoints is modeled as a seventh-order polynomial:
+The core function of the trajectory planner is to transform any sequence of $N$ waypoints into a series of $N-1$ smooth trajectory segments. Each segment of the trajectory between waypoints is modeled as a seventh-order polynomial:
 
 $$
 p(t) = a_7 t^7 + a_6 t^6 + a_5 t^5 + a_4 t^4 + a_3 t^3 + a_2 t^2 + a_1 t + a_0
 $$
 
 where:
-- $$ t $$ is the time parameter.
-- $$ a_0, a_1, \ldots, a_7 $$ are the polynomial coefficients determined for each segment.
+- $t$ is the time parameter.
+- $a_0, a_1, \ldots, a_7$ are the polynomial coefficients determined for each segment.
 
 The boundary conditions applied are:
 - Complete rest (zero velocity, acceleration, jerk, and snap) at the initial waypoint, which translates to:
+
   $$
   p(0) = p_0, \quad \dot{p}(0) = 0, \quad \ddot{p}(0) = 0, \quad \dddot{p}(0) = 0, \quad \ddddot{p}(0) = 0
   $$
+
 - Complete rest (zero velocity, acceleration, jerk, and snap) at the final waypoint, which translates to:
+
   $$
   p(T) = p_T, \quad \dot{p}(T) = 0, \quad \ddot{p}(T) = 0, \quad \dddot{p}(T) = 0, \quad \ddddot{p}(T) = 0
   $$
 
-Here, $$ p_0 $$ and $$ p_T $$ are the positions at the initial and final waypoints, respectively, and $$ T $$ is the time taken to travel between these waypoints.
+Here, $p_0$ and $p_T$ are the positions at the initial and final waypoints, respectively, and $T$ is the time taken to travel between these waypoints.
 
 One challenge I faced in creating the trajectory planning code was constructing the matrix system of equations. This required some creativity in determining which equations to use as constraints and how to know when to stop. For each segment of the trajectory, there are 8 unknown coefficients, necessitating 8 equations to solve for them. This process involved setting up continuity conditions for position, velocity, acceleration, jerk, and snap at each waypoint.
 
