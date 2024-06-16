@@ -55,6 +55,18 @@ Here, $p_0$ and $p_T$ are the positions at the initial and final waypoints, resp
 
 A significant challenge in creating the trajectory planning code was constructing the matrix system of equations needed to solve for the polynomial coefficients. This required determining the appropriate constraints and ensuring there were enough equations to match the number of unknown coefficients. For each trajectory segment, there are 8 unknown coefficients, necessitating 8 constraints per segment. This involved setting up continuity conditions for position, velocity, acceleration, jerk, and snap at each waypoint.
 
+At each of the intermediate waypoints of the path, I enforced the following constraints in order to build my matrix system: 
+
+- Continuity of position ($\mathbf{p}(t)$)
+- Continuity of velocity ($\frac{d\mathbf{p}(t)}{dt}$)
+- Continuity of acceleration ($\frac{d^2\mathbf{p}(t)}{dt^2}$)
+- Continuity of jerk ($\frac{d^3\mathbf{p}(t)}{dt^3}$)
+- Continuity of snap ($\frac{d^4\mathbf{p}(t)}{dt^4}$)
+- Continuity of crackle ($\frac{d^5\mathbf{p}(t)}{dt^5}$)
+- Continuity of pop ($\frac{d^6\mathbf{p}(t)}{dt^6}$)
+
+These continuity conditions ensure that the trajectory is smooth and free from abrupt changes, which is crucial for the stable and efficient operation of the quadcopter.
+
 This method generates smooth, minimum snap trajectories, optimizing the quadcopter's movement through the environment. This reflects my proficiency in applying complex mathematical models to real-world engineering challenges.
 
 For an in-depth understanding, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository.
