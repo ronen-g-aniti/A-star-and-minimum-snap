@@ -14,7 +14,7 @@ where $\mathbf{p}(t)$ is the position vector.
 
 ### Snap Minimization Approximation
 
-Although seventh-order polynomials are not the exact solution to the minimum snap problem, they provide a good approximation by minimizing the integral of the snap squared:
+Although seventh-order polynomials are not the exact solution to the minimum snap problem, they approximate the correct solution. The reason for this is that continuity up the sixth derivative of motion is enforced at each of the intermediate waypoints. 
 
 $$
 J = \int_{0}^{T} \left( \frac{d^4 \mathbf{p}(t)}{dt^4} \right)^2 dt

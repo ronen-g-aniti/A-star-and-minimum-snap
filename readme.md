@@ -57,7 +57,7 @@ A significant challenge in creating the trajectory planning code was constructin
 
 This method generates smooth, minimum snap trajectories, optimizing the quadcopter's movement through the environment. This reflects my proficiency in applying complex mathematical models to real-world engineering challenges.
 
-For an in-depth understanding, refer to the Trajectory Planning Math file in this repository.
+For an in-depth understanding, refer to the ![Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository.
 
 ## Description
 
