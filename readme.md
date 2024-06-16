@@ -65,7 +65,7 @@ At each of the intermediate waypoints of the path, I enforced the continuity for
 - Continuity of crackle ($\frac{d^5\mathbf{p}(t)}{dt^5}$)
 - Continuity of pop ($\frac{d^6\mathbf{p}(t)}{dt^6}$)
 
-When applied to a sequence of $N$ waypoints, these boundary and intermediate waypoint constraints lead to a matrix-system that is full-rank, which is why this trajectory planning module will reliably generate a series of $N-1$ trajectory segments that approximate a minimum snap trajectory. 
+The result of constructing a matrix-system from these boundary conditions and intermediate constraints is a system where each constraint is independent of the others. This is why, when applied to a sequence of $N$ waypoints, this trajectory planning module will reliable generate a series of $N-1$ trajectory segments that approximate a minimum snap trajectory. 
 
 For an in-depth understanding, refer to the [Trajectory Planning Math](motion-planning-A/Project1/trajectory_generation_math.md) file in this repository.
 
