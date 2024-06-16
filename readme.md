@@ -19,8 +19,8 @@ To find the shortest path from the current position to the target position, I em
 $$ f(n) = g(n) + h(n) $$
 
 where:
-- $g(n)$ is the cost from the start node to node $$ n $$.
-- $h(n)$ is the heuristic estimate of the cost from node $$ n $$ to the goal, using the Euclidean distance.
+- $g(n)$ is the cost from the start node to node $n$.
+- $h(n)$ is the heuristic estimate of the cost from node $n$ to the goal, using the Euclidean distance.
 
 By using the Euclidean distance as the heuristic, I ensured accurate and efficient navigation through the 3D cubic lattice, demonstrating my ability to apply advanced algorithmic concepts to practical problems.
 
